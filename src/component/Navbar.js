@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { LogoutButton } from './LogoutButton';
 import { LoginButton } from './LoginButton';
 import logo from '../resources/logo.jpg'
+import { Link } from 'react-router-dom';
 
 
 export const Navbar = () => {
@@ -28,13 +29,13 @@ export const Navbar = () => {
       <nav className={showMenu ? "open" : ""}>
         <ul className={`menu-nav ${showMenu ? "open" : ""}`}>
           <li className={`menu-nav-item ${showMenu ? "open" : ""}`}>
-            <a className="menu-nav-link">Home</a>
+            <Link to="/" className="menu-nav-link">Home</Link>
           </li>
           <li className={`menu-nav-item  ${showMenu ? "open" : ""}`}>
-            <a className="menu-nav-link">Profile</a>
+            <Link to="/profile" className="menu-nav-link">Profile</Link>
           </li>
           <li className={`menu-nav-item ${showMenu ? "open" : ""}`}>
-            <a className="menu-nav-link">Feed</a>
+            <Link to="/" className="menu-nav-link">Feed</Link>
           </li>
           {
             user && !isLoading && <li className={`menu-nav-item ${showMenu ? "open" : ""}`}>
