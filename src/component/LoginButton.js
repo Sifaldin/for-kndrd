@@ -11,7 +11,7 @@ export const LoginButton = () => {
 
     !isAuthenticated && (
       <a onClick={() => loginWithRedirect()} className="menu-nav-link" >
-     <FontAwesomeIcon icon={faSignInAlt} size={"lg"} />
+     <FontAwesomeIcon icon={faSignInAlt} size={"6x"} />
       </a>
     )
   )
