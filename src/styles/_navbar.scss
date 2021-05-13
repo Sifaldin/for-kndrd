@@ -50,10 +50,15 @@
       }
 
       &::after {
-        transform: rotate(- 45deg) translate(3px, -6px);
+        transform: rotate(-45deg) translate(3px, -6px);
       }
     }
   }
+}
+
+#logo{
+  
+  width: 150px;
 }
 
 nav {
@@ -85,11 +90,11 @@ nav {
       transform: translateY(0);
     }
 
-    &-item{
+    &-item {
       transform: translateX(100vw);
       @include transition-ease;
 
-      &.open{
+      &.open {
         transform: translateX(0);
       }
 
@@ -98,7 +103,7 @@ nav {
       }
     }
 
-    &-link{
+    &-link {
       display: inline-block;
       font-size: 2rem;
       text-transform: uppercase;
@@ -106,17 +111,16 @@ nav {
       font-weight: weight(regular);
       cursor: pointer;
       @include transition-ease;
-      
-      &:hover{
+
+      &:hover {
         color: $secondary-color;
       }
     }
   }
 }
 
-
 @for $i from 1 through 4 {
-  .menu-nav-item:nth-child(#{$i}){
+  .menu-nav-item:nth-child(#{$i}) {
     transition-delay: ($i * 0.1s) + 0.15s;
   }
 }
