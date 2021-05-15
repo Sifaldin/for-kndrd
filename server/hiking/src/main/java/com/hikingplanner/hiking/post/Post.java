@@ -1,12 +1,11 @@
 package com.hikingplanner.hiking.post;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hikingplanner.hiking.comments.Comment;
+import com.hikingplanner.hiking.reactions.Reaction;
 import com.hikingplanner.hiking.user.User;
 
-
+import javax.persistence.*;
 import java.util.List;
 
 @Table(name = "posts")
@@ -22,7 +21,6 @@ public class Post {
     @Column(name = "title")
     private String title;
 
-
     @Column(name = "body", length = 10000)
 
     private String body;
@@ -35,11 +33,6 @@ public class Post {
 
     @ManyToOne
     private User user;
-    @ManyToMany(mappedBy = "")
-    private List<User> registeredUsers;
-
-    @Column
-    private String postType;
 
     @Column
     private String location;
@@ -47,25 +40,24 @@ public class Post {
     @Column
     private String meetingTimeAndDate;
 
-    @Column
-    @ElementCollection
-    private List<Double> position;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "reaction_id", referencedColumnName = "id")
+    private Reaction reaction;
 
-    @Column
-    private Integer eventCapacity;
-
-
-    private String category;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
+    public Post() {
+        this.reaction = new Reaction();
+    }
 
     public Post(Long id, String title, String body, String postType) {
         this.id = id;
         this.title = title;
         this.body = body;
-        this.postType = postType;
+        this.reaction = new Reaction();
     }
 
     public Long getId() {
@@ -92,7 +84,6 @@ public class Post {
         this.body = body;
     }
 
-
     public String getImageUrl() {
         return imageUrl;
     }
@@ -117,22 +108,13 @@ public class Post {
         this.user = user;
     }
 
-    public String getPostType() {
-        return postType;
+    public Reaction getReaction() {
+        return reaction;
     }
 
-    public void setPostType(String postType) {
-        this.postType = postType;
+    public void setReaction(Reaction articleReaction) {
+        this.reaction = articleReaction;
     }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
 
     public String getLocation() {
         return location;
@@ -140,14 +122,6 @@ public class Post {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public List<Double> getPosition() {
-        return position;
-    }
-
-    public void setPosition(List<Double> position) {
-        this.position = position;
     }
 
     public String getMeetingTimeAndDate() {
@@ -158,18 +132,4 @@ public class Post {
         this.meetingTimeAndDate = meetingTime;
     }
 
-    public Integer getEventCapacity() {
-        return eventCapacity;
-    }
-
-    public void setEventCapacity(Integer eventCapacity) {
-        this.eventCapacity = eventCapacity;
-    }
-    public List<User> getRegisteredUsers() {
-        return registeredUsers;
-    }
-
-    public void setRegisteredUsers(List<User> registeredUsers) {
-        this.registeredUsers = registeredUsers;
-    }
 }

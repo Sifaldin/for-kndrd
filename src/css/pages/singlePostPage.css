@@ -1,0 +1,355 @@
+/* These styles apply to all three categories of posts,
+the classes are mostly defined in SinglePost.jsx and SharedSinglePost.jsx */
+
+.post-wrapper {
+  display: grid;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.single-post {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  box-shadow: 5px 5px 16px rgba(163, 177, 198, 0.5);
+  border-radius: 32px;
+  width: 90vw;
+  padding-bottom: 1rem;
+  grid-row-gap: 1rem;
+  grid-column-gap: 4rem;
+}
+
+.single-post .post-pic {
+  width: 100%;
+  height: 50vh;
+  display: grid;
+  justify-items: center;
+  background-color: rgba(221, 221, 221, 0.3);
+  border-radius: 32px 32px 0 0;
+}
+
+.single-post .post-pic img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  box-shadow: 5px 5px 16px rgba(163, 177, 198, 0.5);
+  border-radius: 32px 32px 0 0;
+}
+
+.single-post-card {
+  width: 80vw;
+  min-height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: start;
+}
+
+.signature {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-items: start;
+}
+
+.signature .post-user {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+  margin-right: 1rem;
+}
+
+.signature span {
+  display: block;
+}
+
+.signature div {
+  height: 100%;
+  display: grid;
+  grid-row-gap: 0.3rem;
+  align-items: center;
+}
+
+.signature .user-name {
+  font-size: 1.5rem;
+}
+
+.single-post-card .post-info,
+.comment-card {
+  width: 80vw;
+  background-color: rgba(219, 215, 215, 0.4);
+  padding: 1rem;
+  border-radius: 16px;
+  display: grid;
+  grid-row-gap: 16px;
+}
+
+.post-info .date,
+.comment-card .date {
+  font-size: 14px;
+  color: grey;
+}
+
+.post-info .post-body {
+  font-size: 1.2rem;
+}
+
+.post-info .post-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.no-comments {
+  color: grey;
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.comment-area {
+  display: grid;
+  justify-items: start;
+  align-items: start;
+}
+
+.comment-area textarea {
+  border: 1px solid rgb(190, 188, 188);
+  border-radius: 1rem;
+  width: 20rem;
+  max-width: 70vw;
+  height: 8rem;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.updateText {
+  margin-bottom: 1rem;
+}
+
+.comments {
+  display: grid;
+  grid-row-gap: 1rem;
+}
+
+.comment-card p {
+  font-size: 1.1rem;
+}
+
+.comments-wrapper {
+  padding-top: 2rem;
+}
+
+.comments-wrapper h3 {
+  margin-bottom: 1rem;
+}
+
+.comment-user {
+  height: 40px;
+  width: 40px;
+  border-radius: 2rem;
+  margin-right: 1rem;
+}
+
+.comment-card .signature .user-name {
+  font-size: 16px;
+}
+
+.comment-card p {
+  font-size: 14px;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-items: end;
+  grid-column-gap: 0.5rem;
+}
+
+.comment-card .button-group {
+  justify-self: start;
+}
+
+.medium-button.pink {
+  background-color: #ff75ac;
+}
+
+.medium-button.pink:hover {
+  background-color: rgba(255, 117, 172, 0.7);
+}
+
+.mes-button {
+  justify-self: start;
+  align-self: center;
+  height: 25px;
+  width: 25px;
+  background-color: #1e6fbf;
+  border: none;
+  border-radius: 2px;
+  color: rgb(255, 255, 255);
+}
+.mes-button:hover {
+  background-color: rgba(30, 111, 191, 0.7);
+}
+
+.give-map {
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 1rem;
+}
+
+.single-post .show-map {
+  border-radius: 16px;
+  width: 280px;
+  height: 250px;
+}
+
+.single-post .show-map .map-wrapper {
+  display: grid;
+  justify-items: center;
+}
+
+.single-post .show-map .map-wrapper .map {
+  border-radius: 16px;
+  width: 280px;
+  height: 250px;
+}
+
+.map-group {
+  display: grid;
+  justify-items: center;
+}
+
+.contact-link {
+  color: grey;
+}
+
+.contact-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: rgb(50, 50, 85);
+}
+
+.time-related {
+  display: grid;
+  grid-row-gap: 2rem;
+}
+
+.event-time {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  grid-column-gap: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.event-time div span {
+  display: block;
+}
+
+.date-booking {
+  display: grid;
+  grid-row-gap: 1.5rem;
+}
+
+.time-box {
+  box-shadow: 5px 5px 16px rgba(163, 177, 198, 0.5);
+  padding: 1rem;
+  border-radius: 16px;
+  display: grid;
+  justify-items: center;
+  background-color: #5493d2;
+  color: white;
+}
+
+.participants-wrapper {
+  border-radius: 16px;
+  display: grid;
+}
+.participants {
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 1rem;
+}
+
+.participants-list {
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 1rem;
+}
+
+.book-user,
+.unbook-user {
+  display: grid;
+  grid-row-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.available-spots {
+  text-align: center;
+}
+
+@media (min-width: 1000px) {
+  .single-post {
+    width: 90vw;
+    grid-template-areas: "pic post" "unique-content post" "unique-content post" "unique-content post" "unique-content post" "unique-content post" "unique-content post" "unique-content post" "unique-content post" "unique-content post";
+
+    padding: 2rem;
+    align-items: start;
+  }
+  .single-post-card {
+    width: 100%;
+    grid-area: post;
+    justify-items: start;
+    align-items: start;
+  }
+  .single-post-card .post-info,
+  .comment-card {
+    width: 22rem;
+  }
+  .single-post-card .post-info {
+    font-size: 14px;
+  }
+
+  .single-post .post-pic {
+    grid-area: pic;
+    height: 60vh;
+    min-width: 35vw;
+    width: 40vw;
+    border-radius: 32px;
+    position: relative;
+  }
+  .single-post .post-pic img {
+    height: 100%;
+    width: 100%;
+    border-radius: 32px;
+  }
+  .single-post .map {
+    grid-area: unique-content;
+    border-radius: 16px;
+    width: 380px;
+    height: 300px;
+    margin: 0;
+  }
+  .single-post .map .map-wrapper .map {
+    width: 380px;
+    height: 300px;
+  }
+
+  .date-booking {
+    height: auto;
+  }
+
+  .single-post .calendar {
+    grid-area: unique-content;
+  }
+  .single-post .location-button {
+    display: none;
+  }
+}
+
+@media (min-width: 1300px) {
+  .single-post-card .post-info,
+  .comment-card {
+    width: 30rem;
+  }
+}

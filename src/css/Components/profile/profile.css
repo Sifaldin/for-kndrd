@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
+
+
+.profileImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+}
+
+.share-btn {
+  color: white;
+  border-radius: 10px;
+  margin: 0 auto 0.7rem;
+  width: 10rem;
+  border: none;
+  background-color: #e2e2d6;
+  padding: 0.5rem 1rem;
+  display: block;
+}
+

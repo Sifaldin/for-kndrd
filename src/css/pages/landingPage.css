@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap");
+* {
+  margin: 0%;
+}
+
+.LandingPage {
+  background-color:#e2e2d6;
+  display: grid;
+  padding: 0 40px;
+  justify-content: center;
+}
+
+.login-grid {
+  display: grid;
+  grid-row-gap: 42px;
+  align-items: start;
+}
+
+.login-text-box {
+  display: grid;
+  grid-row-gap: 18px;
+  margin-top: 50px;
+}
+
+.login-text-box p {
+  color: #012e67;
+  font-size: 24px;
+}
+
+.form-wrapper {
+  background-color: #dadab8;
+  display: grid;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.signupform,
+.signinform {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-row-gap: 15px;
+  font-family: Source-Sans-Pro;
+}
+
+.signinform input,
+.signupform input {
+  padding: 1.3rem;
+  border-style: solid 0.02rem;
+  height: 4rem;
+  width: 100%;
+  border: none;
+  border-radius: 1rem;
+}
+
+.login-options {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-items: start;
+}
+
+.signinform .gotoRegister {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 14px;
+  font-style: italic;
+  cursor: pointer;
+  color: white;
+}
+
+.signinform .submitButton,
+.signupform .submitButton {
+  background: none;
+  height: 4rem;
+  width: 20rem;
+  background-color: orange;
+  border-style: none;
+  border-radius: 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+.signupform .smallButton,
+.signinform .smallButton {
+  border: none;
+  outline: none;
+  background: none;
+
+  font-style: italic;
+  cursor: pointer;
+  color: white;
+}
+
+@media (min-width: 800px) {
+  .LandingPage {
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    justify-content: end;
+  }
+
+  .login-grid {
+    grid-template-rows: auto 1fr;
+  }
+
+  .login-text-box {
+    width: 30rem;
+  }
+
+  .login-text-box p {
+    max-width: 90%;
+  }
+
+  .form-wrapper {
+    background-color: #dadab8;
+    width: 35rem;
+    max-width: 100%;
+    border-radius: 1rem 0rem 0rem 1rem;
+    align-items: center;
+  }
+
+  .signinform,
+  .signupform {
+    width: 50%;
+    justify-content: start;
+  }
+}
