@@ -2,16 +2,25 @@ import Api from "./Api";
 
 class UserApi {
 
-    addFollower(name, currentUser){
-        return Api.put(`user/${name}/follow`, currentUser);
+    BASE_URL = "http://localhost:8080";
+
+
+    checkUser(name) {
+        return Api.get(`/user/check/${name}`)
+    }
+
+    addFollower(name, currentUser) {
+        return Api.put(`/user/${name}/follow`, currentUser);
+    }
+
+    addUser(currentUser) {
+        return Api.post('/user', currentUser);
     }
 
     updateUser(currentUser) {
         return Api.put('/user', currentUser);
     }
-    getUser() {
-        return Api.get("/user");
-    }
+
     getUserByName(name) {
         return Api.get(`/user/${name}`);
     }

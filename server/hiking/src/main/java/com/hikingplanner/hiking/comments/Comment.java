@@ -2,6 +2,7 @@ package com.hikingplanner.hiking.comments;
 
 import com.hikingplanner.hiking.post.Post;
 import com.hikingplanner.hiking.user.User;
+
 import javax.persistence.*;
 
 @Table(name = "comments")
@@ -25,7 +26,11 @@ public class Comment {
     @ManyToOne
     private User user;
 
-    public Comment(Long id, String body, String authorName) {
+    public Comment(){
+
+    }
+
+    public Comment(Long id, String body) {
         this.id = id;
         this.body = body;
     }

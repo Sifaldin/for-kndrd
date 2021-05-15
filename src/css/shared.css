@@ -1,0 +1,67 @@
+body > *,
+*,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span,
+a,
+li,
+ul,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+span,
+h3 {
+  display: inline-block;
+}
+
+/* Different types of buttons */
+
+.medium-button {
+  border: none;
+  background-color: #1e6fbf;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+.medium-button:hover {
+  background-color: rgba(30, 111, 191, 0.7);
+}
+
+.medium-button:disabled,
+.medium-button[disabled="disabled"] {
+  background-color: #1e6fbf !important;
+  cursor: not-allowed;
+}
+
+.small-button {
+  border: none;
+  background-color: green;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}

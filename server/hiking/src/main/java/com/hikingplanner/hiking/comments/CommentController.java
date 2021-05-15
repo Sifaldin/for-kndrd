@@ -1,7 +1,10 @@
 package com.hikingplanner.hiking.comments;
 
+
+import com.hikingplanner.hiking.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -9,6 +12,8 @@ import java.util.List;
 public class CommentController {
 
     private final CommentService service;
+    PostRepository postRepository;
+
 
     @Autowired
     public CommentController(CommentService service) {
@@ -17,21 +22,19 @@ public class CommentController {
 
 
     /**
-     * EndPoint that receives a request to get all the comments with the specified post id.
+     * EndPoint that receives a request to get all the comments
      *
-     * @param postId
      * @return Invoke the getAll function in the commentService class.
-     * List of comments.
+     *List of comments.
      */
     @GetMapping("")
-    public List<Comment> getComments(@RequestParam(required = false) Long postId) {
-        return postId == null ? service.getAll() : service.getAllByPostId(postId);
+    public List<Comment> getComments() {
+        return service.getAll();
     }
 
 
     /**
      * EndPoint that receives new comment data and send them to the comment service to create the new comment
-     *
      * @param newComment
      * @return Invoke the create function in the commentService class.
      * List of comments
@@ -44,7 +47,6 @@ public class CommentController {
 
     /**
      * EndPoint that receives the updated data and send them to the comment service to update an existed comment.
-     *
      * @param updatedComment
      * @return Invoke the update function in the postService class.
      * The updated comment.
@@ -56,7 +58,6 @@ public class CommentController {
 
     /**
      * EndPoint that receives a specific id and invoke the delete function in comment service.
-     *
      * @param id
      */
     @DeleteMapping("/{id}")

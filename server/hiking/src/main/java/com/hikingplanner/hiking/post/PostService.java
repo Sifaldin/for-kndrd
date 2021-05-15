@@ -68,22 +68,4 @@ public class PostService {
         repository.deleteById(id);
     }
 
-
-    /**
-     * This function invokes the findAllByPostType in the postRepository.
-     * @param postType
-     * @return List of posts with a specific type.
-     */
-    public List<Post> getAllByPostType(String postType) {
-        return repository.findAllByPostType(postType);
-    }
-
-    /**
-     * This function invokes the findAllByCategory in the postRepository.
-     * @param category
-     * @return List of posts with a specific category.
-     */
-    public List<Post> getAllByPostCategory(String category) {
-        return repository.findAllByCategory(category);
-    }
 }

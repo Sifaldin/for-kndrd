@@ -1,0 +1,17 @@
+@import "./shared.css";
+
+/* Fonts */
+/* use font-family: 'Source Sans Pro', sans-serif; font weight 400 or 600 */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+
+@import "./pages/landingPage.css";
+@import "./pages/home.css";
+@import "./pages/postsPage.css";
+@import "./pages/singlePostPage.css";
+@import "./Components/layout/modal.css";
+@import "./Components/Post/postCard.css";
+@import "./Components/Post/createPostPage.css";
+@import "./Components/profile/profile.css";
+@import "./Components/profile/dropDownProfile.css";
+@import "./Components/profile/imageEdit.css";
+@import "./Components/layout/nav.css";
