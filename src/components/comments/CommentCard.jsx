@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CommentUpdateForm from "./CommentUpdateForm";
 
-function CommentCard({ comment, setComments, comments, onUpdateClick, user }) {
+function CommentCard({ comment, setComments, comments, updateComment, user }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updatedComment, setUpdatedComment] = useState(comment);
 
@@ -31,7 +31,7 @@ function CommentCard({ comment, setComments, comments, onUpdateClick, user }) {
       {isUpdating ? (
         <CommentUpdateForm
           oldComment={comment}
-          onUpdateClick={onUpdateClick}
+          updateComment={updateComment}
           setIsUpdating={setIsUpdating}
           setUpdatedComment={setUpdatedComment}
         />

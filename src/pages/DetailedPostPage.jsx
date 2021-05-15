@@ -19,13 +19,13 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
     fetchPost();
   }, [id, posts]);
 
-  console.log(post)
+  console.log(post);
 
   const [selectedDateAndTime, setSelectedDateAndTime] = useState(
     post.meetingTimeAndDate
   );
 
-  const handleTimeChange = () => {
+  const handleTimeChange = (updatedPost) => {
     Api.put("/posts", updatedPost).then((res) => {
       setPosts([...posts, res.data]);
     });
@@ -60,19 +60,19 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
         <img src={post.imageUrl} alt="Single post img" />
       </div>
 
-      {/*  <div className="time-related">
-          <div className="show-map date-booking">
-            <div className="time-box">
-                <div className="event-time">
-                  <BsClock></BsClock>
-                  <div>
-                    <span>
-                      {dateDisplay()} at {timeDisplay()}
-                    </span>
-                  </div>
-                </div>
-           
-              {post.user.id === user.id && post.meetingTimeAndDate && (
+      <div className="time-related">
+        <div className="show-map date-booking">
+          <div className="time-box">
+            <div className="event-time">
+              <BsClock></BsClock>
+              <div>
+                <span>
+                  {dateDisplay()} at {timeDisplay()}
+                </span>
+              </div>
+            </div>
+
+            { post.user?.id === user?.id &&  post.meetingTimeAndDate && (
                 <div>
                   <MaterialUiCalendar
                     selectedDateAndTime={selectedDateAndTime}
@@ -80,17 +80,21 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
                   />
                   <button
                     className="medium-button edit"
-                    onClick={(e) => {
-                      handleTimeChange();
+                    onClick={() => {
+                      handleTimeChange({
+                        ...post,
+                        meetingTimeAndDate: selectedDateAndTime,
+                      });
                     }}
                   >
                     edit date
                   </button>
                 </div>
-              )}
-            </div>
+              )
+            }
           </div>
-        </div> */}
+        </div>
+      </div>
 
       <div className="single-post-card">
         <div className="post-info">
@@ -109,7 +113,7 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
           {isUpdating ? (
             <PostUpdateForm
               post={post}
-              onUpdateClick={updatePost}
+              updateComment={updatePost}
               setIsUpdating={setIsUpdating}
             />
           ) : (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function CommentUpdateForm({
   oldComment,
-  onUpdateClick,
+  updateComment,
   setIsUpdating,
   setUpdatedComment,
 }) {
@@ -18,7 +18,7 @@ function CommentUpdateForm({
       <button
         className="medium-button"
         onClick={() => {
-          onUpdateClick({ ...oldComment, body });
+          updateComment({ ...oldComment, body });
           setIsUpdating(false);
           setUpdatedComment({...oldComment, body})
         }}

@@ -40,6 +40,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
+.empty-feed{
+  margin-left: 3rem;
+  
+}
 
 .post-icon {
   display: grid;

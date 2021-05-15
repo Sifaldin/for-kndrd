@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Api from "../../api/Api";
 import { format } from "date-fns";
 
-export default function NewCommentForm({ user, onSubmit, post }) {
+export default function CommentForm({ user, onSubmit, post }) {
   const [body, setBody] = useState("");
 
   return (

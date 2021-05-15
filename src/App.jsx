@@ -66,7 +66,7 @@ function App() {
           <Switch>
             {/* The route displays the application's homepage */}
             <Route path="/" exact>
-              <HomePage userPosts={userPosts} />
+              <HomePage user={user} userPosts={userPosts} />
             </Route>
 
             <Route path="/posts" exact>

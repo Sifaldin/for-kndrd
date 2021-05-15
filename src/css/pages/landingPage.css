@@ -19,7 +19,7 @@
 .login-text-box {
   display: grid;
   grid-row-gap: 18px;
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
 .login-text-box p {

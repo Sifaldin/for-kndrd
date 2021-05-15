@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PostUpdateForm({ post, onUpdateClick, setIsUpdating }) {
+export default function PostUpdateForm({ post, updateComment, setIsUpdating }) {
   const [body, setBody] = useState(post.body);
   const [title, setTitle] = useState(post.title)
 
@@ -37,7 +37,7 @@ export default function PostUpdateForm({ post, onUpdateClick, setIsUpdating }) {
           type="submit"
           className="medium-button"
           onClick={() => {
-            onUpdateClick({ ...post, body, title });
+            updateComment({ ...post, body, title });
             setIsUpdating(false);
           }}
         >

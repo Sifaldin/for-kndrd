@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NewCommentForm from "./NewCommentForm";
+import CommentForm from "./CommentForm";
 import CommentCard from "./CommentCard";
 import Api from "../../api/Api";
 
@@ -8,14 +8,12 @@ export default function Comments({ postId, user, post }) {
 
   useEffect(() => {
     const getAllComments = () => {
-      Api.get('/comments').then((res) =>
-      setComments(res.data)
-      );
+      Api.get("/comments").then((res) => setComments(res.data));
     };
     getAllComments();
   }, [setComments]);
 
-  console.log("comments", comments)
+  console.log("comments", comments);
 
   const createComment = (commentData) => {
     Api.post(`/comments`, commentData).then((response) => {
@@ -23,12 +21,11 @@ export default function Comments({ postId, user, post }) {
     });
   };
 
-  
-
   const updateComment = (updatedComment) => {
-    Api.put("/comments", updatedComment).then((res) =>
-      setComments([...comments, res.data])
-    );
+    Api.put("/comments", updatedComment).then((res) => {
+     let mappedComments = comments?.map((comment) => comment.id !== updateComment?.id ? comment : res.data);
+      setComments(mappedComments);
+    });
   };
 
   return (
@@ -37,21 +34,23 @@ export default function Comments({ postId, user, post }) {
 
       {comments.length > 0 ? (
         <div className="comments">
-          {comments.filter(comment => comment.post.id == postId).map((comment) => (
-            <CommentCard
-              user={user}
-              comment={comment}
-              key={comment.id}
-              onUpdateClick={updateComment}
-              setComments={setComments}
-              comments={comments}
-            />
-          ))}
+          {comments
+            .filter((comment) => comment.post?.id == postId)
+            .map((comment) => (
+              <CommentCard
+                user={user}
+                comment={comment}
+                key={comment.id}
+                updateComment={updateComment}
+                setComments={setComments}
+                comments={comments}
+              />
+            ))}
         </div>
       ) : (
         <p className="no-comments">No one commented this post yet</p>
       )}
-      <NewCommentForm user={user} onSubmit={createComment} post={post} />
+      <CommentForm user={user} onSubmit={createComment} post={post} />
     </div>
   );
 }
