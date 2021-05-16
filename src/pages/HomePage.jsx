@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import hike from "../assets/hike.jpg";
-import Auth from "../services/Auth";
 
-export default function HomePage({ userPosts, setDatabaseUser, user }) {
-  
+export default function HomePage({ posts, user }) {
+  const userPosts = posts?.filter((post) => post.user.email == user.email);
   return (
     <div className="dashboard">
       <div className="post-box">
@@ -13,7 +12,7 @@ export default function HomePage({ userPosts, setDatabaseUser, user }) {
         <div className="bottom">
           <ul className="post-icons">
             {userPosts.length > 0 ? (
-              userPosts?.map((post) => {
+              userPosts.map((post) => {
                 return (
                   <div className="post-icon" key={post.id}>
                     <Link to={`/posts/${post.id}`}>
@@ -26,9 +25,9 @@ export default function HomePage({ userPosts, setDatabaseUser, user }) {
                 );
               })
             ) : (
-             
-                <p className="empty-feed">You have no posts yet, start posting!</p>
-       
+              <p className="empty-feed">
+                You have no posts yet, start posting!
+              </p>
             )}
           </ul>
         </div>

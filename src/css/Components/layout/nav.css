@@ -27,7 +27,8 @@
 
 .navbar-logo {
   justify-self: start;
-  margin-left: 0px;
+  margin-left: 4rem;
+  margin-top: 4px;
 }
 
 .fa-firstdraft {
@@ -79,12 +80,11 @@
 .menu-icon {
   display: none;
 }
-.desktopSize{
+.desktopSize {
   display: block;
 }
 
 @media screen and (max-width: 950px) {
-
   .profile-icon {
     transform: translate(-330%, 0%);
   }
@@ -173,16 +173,14 @@
     color: #1e6fbf;
     transition: 250ms;
   }
-    .phoneSize {
-  display: block;
-}
-.desktopSize {
-  display: none;
-}
-  
+  .phoneSize {
+    display: block;
+  }
+  .desktopSize {
+    display: none;
+  }
 }
 @media screen and (max-width: 768px) {
-
   .profile-icon {
     transform: translate(-240%, 0%);
   }
@@ -201,7 +199,7 @@
 
 @media screen and (max-width: 570px) {
   .profile-icon {
-    transform: translate(-350%, 10%); 
+    transform: translate(-350%, 10%);
     display: grid;
     grid-template-rows: 1fr 1fr;
     align-items: start;
@@ -221,5 +219,4 @@
     left: 4rem;
     transform: translate(40%, 0%);
   }
-  
 }

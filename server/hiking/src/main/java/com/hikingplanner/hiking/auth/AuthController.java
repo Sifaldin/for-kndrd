@@ -36,7 +36,7 @@ public class AuthController {
             AuthResponse authResponse = new AuthResponse(token);
             return new ResponseEntity<>(authResponse, HttpStatus.OK);
         } catch (AuthenticationException authenticationException) {
-            userService.register(user);
+            register(user);
         }
         return null;
     }

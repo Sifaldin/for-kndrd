@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { BsClock } from "react-icons/bs";
 import Comments from "../components/comments/Comments";
 import PostUpdateForm from "../components/posts/PostUpdateForm";
-import { useAuth0 } from "@auth0/auth0-react";
 
 export default function DetailedPostPage({ match, setPosts, user, posts }) {
   const id = match.params.id;
@@ -14,9 +13,6 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
   const [selectedDateAndTime, setSelectedDateAndTime] = useState(
     post?.meetingTimeAndDate
   );
-  const { user: googleUser } = useAuth0();
-
-  console.log(googleUser);
 
   const history = useHistory();
 
@@ -25,15 +21,9 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
       await Api.get(`/posts/${id}`).then((res) => setPost(res.data));
     };
     fetchPost();
-  }, [id, posts]);
+  }, [id]);
 
   console.log(post);
-
-  /* const handleTimeChange = (updatedPost) => {
-    Api.put("/posts", updatedPost).then((res) => {
-      setPosts([...posts, res.data]);
-    });
-  }; */
 
   const updatePost = (updatedPost) => {
     Api.put("/posts", updatedPost).then((res) => {
@@ -46,7 +36,7 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
   };
 
   const deletePost = () => {
-    setPosts(posts.filter((p) => p.id !== post.id));
+    setPosts(posts.filter((post) => post.id != id));
     Api.delete("/posts/" + post.id).then(() => history.push(`/posts`));
   };
 

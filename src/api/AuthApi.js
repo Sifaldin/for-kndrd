@@ -1,8 +1,8 @@
 import Api from './Api';
 
 class AuthApi {
-  authenticate({ email, password }) {
-    return Api.post('/authenticate', { email, password });
+  authenticate({ email, password, name, imageUrl }) {
+    return Api.post('/authenticate', { email, password, name, imageUrl });
   }
 
   register({ name, email, password }) {

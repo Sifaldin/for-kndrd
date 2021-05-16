@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import userEvent from "@testing-library/user-event";
-import UserApi from "../../api/UserApi";
-import AuthApi from "../../api/AuthApi";
 
 export default function LoginForm({ onSubmit, goRegister }) {
   const [email, setEmail] = useState("");
