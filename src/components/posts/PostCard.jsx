@@ -31,7 +31,6 @@ export default function PostCard({ post }) {
         <div className="down-wrapper">
           <div className="signature"></div>
           <hr />
-          {/* link to the post details */}
           <div className="react">
             <Link className="medium-button" to={`/posts/${post.id}`}>
               View post

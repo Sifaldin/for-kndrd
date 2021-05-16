@@ -6,7 +6,7 @@
 
 @import "./pages/landingPage.css";
 @import "./pages/home.css";
-@import "./pages/postsPage.css";
+@import "./pages/feed.css";
 @import "./pages/singlePostPage.css";
 @import "./Components/layout/modal.css";
 @import "./Components/Post/postCard.css";

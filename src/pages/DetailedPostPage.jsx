@@ -120,8 +120,6 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
             </>
           )}
 
-          {/* The post is deleted only if the email of the logged in user and 
-        email of the user who wrote the post are the same */}
           {post?.user?.email === user?.email ? (
             <div className="button-group">
               <button

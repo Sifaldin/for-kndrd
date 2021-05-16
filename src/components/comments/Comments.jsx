@@ -23,7 +23,9 @@ export default function Comments({ postId, user, post }) {
 
   const updateComment = (updatedComment) => {
     Api.put("/comments", updatedComment).then((res) => {
-     let mappedComments = comments?.map((comment) => comment.id !== updateComment?.id ? comment : res.data);
+      let mappedComments = comments?.map((comment) =>
+        comment.id !== updateComment?.id ? comment : res.data
+      );
       setComments(mappedComments);
     });
   };

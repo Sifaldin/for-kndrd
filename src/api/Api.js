@@ -27,7 +27,6 @@ Api.interceptors.response.use(
   }
 );
 
-// Exporting Api into the global namespace for introspecting
 window.Api = Api;
 
 export default Api;

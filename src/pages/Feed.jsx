@@ -1,6 +1,6 @@
 import PostCard from "../components/posts/PostCard";
 
-export default function PostsPage({ posts }) {
+export default function Feed({ posts }) {
   return (
     <div className="posts-page">
       <div className="posts">

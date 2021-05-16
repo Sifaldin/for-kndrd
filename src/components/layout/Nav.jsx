@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
-import DropDownItem from "../profile/DropDownItem";
-import DropDownMenu from "../profile/DropDownMenu";
+import DropDownItem from "./dropdown-menu/DropDownItem";
+import DropDownMenu from "./dropdown-menu/DropDownMenu";
 
 
 

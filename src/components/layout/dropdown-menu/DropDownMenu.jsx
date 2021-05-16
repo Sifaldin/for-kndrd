@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { RiDoorOpenLine } from "react-icons/ri";
-import Api from "../../api/Api";
 import { Link } from "react-router-dom";
-import Auth from "../../services/Auth";
+import Auth from "../../../services/Auth";
 import ImageEditMenu from "./ImageEditMenu";
 import { RiDashboardLine } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";

@@ -20,7 +20,7 @@ function CommentUpdateForm({
         onClick={() => {
           updateComment({ ...oldComment, body });
           setIsUpdating(false);
-          setUpdatedComment({...oldComment, body})
+          setUpdatedComment({ ...oldComment, body });
         }}
       >
         Save

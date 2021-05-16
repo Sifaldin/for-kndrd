@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Api from "../../api/Api";
+import Api from "../../../api/Api";
 import ProfileImageUploader from "./ProfileImageUploader";
 import { IoMdCloseCircle } from "react-icons/io";
 
@@ -14,7 +14,6 @@ export default function ImageEditMenu({ user, setUser, setShowImageEdit }) {
 
   return (
     <div className="image-menu-wrapper">
-
       <div className="modal-box">
         <div className="modal-icon">
           <IoMdCloseCircle

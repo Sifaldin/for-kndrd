@@ -5,7 +5,6 @@ import Api from "../../api/Api";
 import ImageUploader from "./ImageUploader";
 import MaterialUiCalendar from "../Calendar/MaterialUiCalendar";
 
-//Displays the form for creation of a new post by user
 function PostForm({ posts, setPosts, user }) {
   const history = useHistory();
   const [imgUrl, setImgUrl] = useState("");

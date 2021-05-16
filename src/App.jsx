@@ -6,7 +6,7 @@ import "./css/App.css";
 import Auth from "./services/Auth";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
-import PostsPage from "./pages/PostsPage";
+import Feed from "./pages/Feed";
 import PostForm from "./components/posts/PostForm";
 import Api from "./api/Api";
 import Nav from "./components/layout/Nav";
@@ -68,7 +68,7 @@ function App() {
             </Route>
 
             <Route path="/posts" exact>
-              <PostsPage posts={posts} />
+              <Feed posts={posts} />
             </Route>
 
             <Route exact path="/new">

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactImageUploadComponent from "react-images-upload";
 
-
 export default function ImageUploader({ setImgUrl }) {
   const [payload, setPayload] = useState(null);
 
- 
   useEffect(() => {
     const abortFetch = new AbortController();
     const sendImage = async () => {
@@ -21,7 +19,6 @@ export default function ImageUploader({ setImgUrl }) {
           );
           const jsonResponse = await response.json();
           setImgUrl(jsonResponse["secure_url"]);
-
         }
       } catch (error) {
         console.log(error);
@@ -37,7 +34,6 @@ export default function ImageUploader({ setImgUrl }) {
     data.append("file", file);
     data.append("upload_preset", "teamphoenix");
     setPayload(data);
-
   };
 
   return (
@@ -49,8 +45,7 @@ export default function ImageUploader({ setImgUrl }) {
       withIcon={false}
       buttonStyles={{ background: "#ff75ac", borderRadius: "8px" }}
       buttonClassName="upload-button"
-      fileContainerStyle={{ background: "#e2e2d6", boxShadow:"none" }}
-
+      fileContainerStyle={{ background: "#e2e2d6", boxShadow: "none" }}
     />
   );
 }
