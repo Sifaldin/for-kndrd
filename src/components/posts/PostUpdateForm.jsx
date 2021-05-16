@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-export default function PostUpdateForm({ post, updateComment, setIsUpdating }) {
+export default function PostUpdateForm({ post, updatePost, setIsUpdating }) {
   const [body, setBody] = useState(post.body);
-  const [title, setTitle] = useState(post.title)
+  const [title, setTitle] = useState(post.title);
 
   return (
     <div>
@@ -17,8 +17,6 @@ export default function PostUpdateForm({ post, updateComment, setIsUpdating }) {
         />
         <span className="placeholder"></span>
       </label>
-
-
 
       <label className="custom-field">
         <textarea
@@ -37,7 +35,7 @@ export default function PostUpdateForm({ post, updateComment, setIsUpdating }) {
           type="submit"
           className="medium-button"
           onClick={() => {
-            updateComment({ ...post, body, title });
+            updatePost({ ...post, body, title });
             setIsUpdating(false);
           }}
         >

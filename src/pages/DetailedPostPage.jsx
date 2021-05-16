@@ -5,11 +5,19 @@ import { useHistory } from "react-router-dom";
 import { BsClock } from "react-icons/bs";
 import Comments from "../components/comments/Comments";
 import PostUpdateForm from "../components/posts/PostUpdateForm";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function DetailedPostPage({ match, setPosts, user, posts }) {
   const id = match.params.id;
   const [isUpdating, setIsUpdating] = useState(false);
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState(posts?.find((post) => post.id == id));
+  const [selectedDateAndTime, setSelectedDateAndTime] = useState(
+    post?.meetingTimeAndDate
+  );
+  const { user: googleUser } = useAuth0();
+
+  console.log(googleUser);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -21,19 +29,19 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
 
   console.log(post);
 
-  const [selectedDateAndTime, setSelectedDateAndTime] = useState(
-    post.meetingTimeAndDate
-  );
-
-  const handleTimeChange = (updatedPost) => {
+  /* const handleTimeChange = (updatedPost) => {
     Api.put("/posts", updatedPost).then((res) => {
       setPosts([...posts, res.data]);
     });
-  };
+  }; */
 
   const updatePost = (updatedPost) => {
     Api.put("/posts", updatedPost).then((res) => {
-      setPosts([...posts, res.data]);
+      let mappedPosts = posts?.map((post) =>
+        post.id !== updatedPost?.id ? post : res.data
+      );
+      setPosts(mappedPosts);
+      setPost(res.data);
     });
   };
 
@@ -43,21 +51,21 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
   };
 
   const dateDisplay = () => {
-    if (post.meetingTimeAndDate !== null) {
-      return post.meetingTimeAndDate?.slice(0, 10);
+    if (post?.meetingTimeAndDate !== null) {
+      return post?.meetingTimeAndDate?.slice(0, 10);
     }
   };
 
   const timeDisplay = () => {
-    if (post.meetingTimeAndDate !== null) {
-      return post.meetingTimeAndDate?.slice(16, 21);
+    if (post?.meetingTimeAndDate !== null) {
+      return post?.meetingTimeAndDate?.slice(16, 21);
     }
   };
 
   return (
     <div className="single-post">
       <div className="post-pic">
-        <img src={post.imageUrl} alt="Single post img" />
+        <img src={post?.imageUrl} alt="Single post img" />
       </div>
 
       <div className="time-related">
@@ -72,26 +80,25 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
               </div>
             </div>
 
-            { post.user?.id === user?.id &&  post.meetingTimeAndDate && (
-                <div>
-                  <MaterialUiCalendar
-                    selectedDateAndTime={selectedDateAndTime}
-                    setSelectedDateAndTime={setSelectedDateAndTime}
-                  />
-                  <button
-                    className="medium-button edit"
-                    onClick={() => {
-                      handleTimeChange({
-                        ...post,
-                        meetingTimeAndDate: selectedDateAndTime,
-                      });
-                    }}
-                  >
-                    edit date
-                  </button>
-                </div>
-              )
-            }
+            {post?.user?.id === user?.id && post?.meetingTimeAndDate && (
+              <div>
+                <MaterialUiCalendar
+                  selectedDateAndTime={selectedDateAndTime}
+                  setSelectedDateAndTime={setSelectedDateAndTime}
+                />
+                <button
+                  className="medium-button edit"
+                  onClick={() => {
+                    updatePost({
+                      ...post,
+                      meetingTimeAndDate: selectedDateAndTime,
+                    });
+                  }}
+                >
+                  edit date
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -101,31 +108,31 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
           <div className="signature">
             <img
               className="post-user"
-              src={post.user?.imageUrl}
+              src={post?.user?.imageUrl}
               alt="Single post img"
             />
             <div>
-              <span className="user-name">{post.user?.name}</span>
-              <span className="date">{post.date}</span>
+              <span className="user-name">{post?.user?.name}</span>
+              <span className="date">{post?.date}</span>
             </div>
           </div>
 
           {isUpdating ? (
             <PostUpdateForm
               post={post}
-              updateComment={updatePost}
+              updatePost={updatePost}
               setIsUpdating={setIsUpdating}
             />
           ) : (
             <>
-              <h3 className="post-title">{post.title}</h3>
-              <p className="post-body">{post.body}</p>
+              <h3 className="post-title">{post?.title}</h3>
+              <p className="post-body">{post?.body}</p>
             </>
           )}
 
           {/* The post is deleted only if the email of the logged in user and 
         email of the user who wrote the post are the same */}
-          {post.user?.email === user?.email ? (
+          {post?.user?.email === user?.email ? (
             <div className="button-group">
               <button
                 className="medium-button"

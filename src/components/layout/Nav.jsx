@@ -4,11 +4,14 @@ import logo from "../../assets/logo.jpg";
 import DropDownItem from "../profile/DropDownItem";
 import DropDownMenu from "../profile/DropDownMenu";
 
+
+
+
 function Nav({ user, setUser }) {
 console.log(user)
- 
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);

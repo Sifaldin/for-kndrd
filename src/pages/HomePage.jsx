@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import hike from "../assets/hike.jpg";
+import Auth from "../services/Auth";
 
-export default function HomePage({ userPosts }) {
+export default function HomePage({ userPosts, setDatabaseUser, user }) {
+  
   return (
     <div className="dashboard">
       <div className="post-box">

@@ -12,11 +12,6 @@ export default function ImageEditMenu({ user, setUser, setShowImageEdit }) {
     Api.put("/user", updatedUser).then((res) => setUser(res.data));
   };
 
-  //Callback function that will return the image uploader to change the image
-  const changeImage = () => {
-    setImgUrl(null);
-    updateUser();
-  };
   return (
     <div className="image-menu-wrapper">
 

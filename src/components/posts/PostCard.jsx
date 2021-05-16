@@ -4,24 +4,6 @@ import { Link } from "react-router-dom";
 import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
 
 export default function PostCard({ post }) {
-  const [reaction, setReaction] = useState(post.reaction);
-
-  console.log(post);
-
-  const incrementLike = () => {
-    const url = "/reactions/" + reaction.id + "?incrementTarget=like";
-    Api.put(url, reaction).then((r) => {
-      setReaction(r.data);
-    });
-  };
-
-  const incrementDislike = () => {
-    const url = "/reactions/" + reaction.id + "?incrementTarget=dislike";
-    Api.put(url, reaction).then((r) => {
-      setReaction(r.data);
-    });
-  };
-
   return (
     <div className="postcard">
       <Link to={{ pathname: `/posts/${post.id}`, state: { post } }}>
@@ -40,7 +22,7 @@ export default function PostCard({ post }) {
             <span className="date">{post?.date}</span>
           </div>
         </div>
-        {/* Header includes post title and type(giving or requesting) */}
+
         <div className="header">
           <h3 className="title">{post.title}</h3>
         </div>
@@ -49,19 +31,8 @@ export default function PostCard({ post }) {
         <div className="down-wrapper">
           <div className="signature"></div>
           <hr />
-          {/* React container includes reactions and link to the post details */}
+          {/* link to the post details */}
           <div className="react">
-            <div className="reaction">
-              <button onClick={incrementLike}>
-                <FaLongArrowAltUp className="up" />
-                <span>{reaction.like}</span>
-              </button>
-              <button onClick={incrementDislike}>
-                <FaLongArrowAltDown className="down" />
-                <span>{reaction.dislike}</span>
-              </button>
-            </div>
-
             <Link className="medium-button" to={`/posts/${post.id}`}>
               View post
             </Link>

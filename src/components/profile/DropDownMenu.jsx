@@ -6,15 +6,15 @@ import { Link } from "react-router-dom";
 import Auth from "../../services/Auth";
 import ImageEditMenu from "./ImageEditMenu";
 import { RiDashboardLine } from "react-icons/ri";
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function DropDownMenu({ user, setUser }) {
   const [open, setOpen] = useState(true);
   const [activeMenu, setactiveMenu] = useState("main");
-
   const [imgUrl, setImgUrl] = useState("");
-
   const [showImageEdit, setShowImageEdit] = useState(false);
-
+  const { logout } = useAuth0();
+  
   const showModalAndCloseMenu = () => {
     setShowImageEdit(true);
     setOpen(!open);
@@ -22,11 +22,15 @@ export default function DropDownMenu({ user, setUser }) {
 
   //Callback function that will send a user update call to the server
   const updateUser = () => {
-    const img = { ...user, imageUrl: imgUrl };
-    Api.put("/user", img).then((res) => setUser(res.data));
+    const userWithUpdatedImage = { ...user, imageUrl: imgUrl };
+    Api.put("/user", userWithUpdatedImage).then((res) => setUser(res.data));
   };
 
-   const onLogout = () => Auth.logout();
+   const onLogout = () => {
+     Auth.logout();
+     logout();
+    
+    };
 
   function DisplayItem(props) {
     return (

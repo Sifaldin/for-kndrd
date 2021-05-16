@@ -35,7 +35,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
         }
 
         try {
-            // remove "Bearer" prefix from header
+
             String token = authorizationHeader.split(" ")[1];
 
             Map<String, Claim> claims = jwtEncoderDecoder.verify(token);

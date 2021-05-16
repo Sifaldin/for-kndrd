@@ -6,7 +6,7 @@ import ImageUploader from "./ImageUploader";
 import MaterialUiCalendar from "../Calendar/MaterialUiCalendar";
 
 //Displays the form for creation of a new post by user
-function  PostForm({ posts, setPosts, user }) {
+function PostForm({ posts, setPosts, user }) {
   const history = useHistory();
   const [imgUrl, setImgUrl] = useState("");
   const [postTitle, setPostTitle] = useState("");
@@ -18,18 +18,18 @@ function  PostForm({ posts, setPosts, user }) {
   const [selectedDateAndTime, setSelectedDateAndTime] = useState(now);
 
   const canBeSubmitted = () => {
-    return  imgUrl !== undefined &&
-          imgUrl.length > 0 &&
-          postTitle.length > 0 &&
-          details.length > 0;
+    return (
+      imgUrl !== undefined &&
+      imgUrl.length > 0 &&
+      postTitle.length > 0 &&
+      details.length > 0
+    );
   };
-
 
   const submitHandler = (event) => {
     event.preventDefault();
     const newPost = {
       body: details,
-      claimed: false,
       imageUrl: imgUrl,
       title: postTitle,
       date: format(new Date(), "dd-MM-yyyy"),
@@ -52,7 +52,6 @@ function  PostForm({ posts, setPosts, user }) {
           </div>
           <ImageUploader setUploading={setUploading} setImgUrl={setImgUrl} />
 
-
           <label className="custom-field">
             <input
               type="text"
@@ -74,13 +73,10 @@ function  PostForm({ posts, setPosts, user }) {
             <span className="placeholder">Enter Details</span>
           </label>
 
-       
-          
-            <MaterialUiCalendar
-              selectedDateAndTime={selectedDateAndTime}
-              setSelectedDateAndTime={setSelectedDateAndTime}
-            />
-      
+          <MaterialUiCalendar
+            selectedDateAndTime={selectedDateAndTime}
+            setSelectedDateAndTime={setSelectedDateAndTime}
+          />
 
           <div>
             <button
@@ -91,13 +87,10 @@ function  PostForm({ posts, setPosts, user }) {
               Submit
             </button>
           </div>
-
-        
         </div>
       </form>
-    
     </div>
   );
 }
 
-export default  PostForm;
+export default PostForm;

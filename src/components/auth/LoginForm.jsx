@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import userEvent from "@testing-library/user-event";
+import UserApi from "../../api/UserApi";
+import AuthApi from "../../api/AuthApi";
 
 export default function LoginForm({ onSubmit, goRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { loginWithRedirect, user } = useAuth0();
+
   return (
     <div className="form-wrapper">
       <div className="signinform">
-        
         <input
           id="email1"
           type="text"
@@ -16,7 +21,7 @@ export default function LoginForm({ onSubmit, goRegister }) {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
         />
-       
+
         <input
           id="pass2"
           type="password"
@@ -25,7 +30,7 @@ export default function LoginForm({ onSubmit, goRegister }) {
           data-type="password"
           placeholder="Enter your password"
         />
-       
+
         <button
           className="submitButton"
           type="submit"
@@ -35,8 +40,21 @@ export default function LoginForm({ onSubmit, goRegister }) {
           SIGN IN
         </button>
 
+        <button
+          type="submit"
+          onClick={() => {
+            loginWithRedirect();
+          }}
+          value="Sign In"
+        >
+          Sign in with google
+        </button>
+
         <div className="login-options">
-          <button className="smallButton" onClick={() => alert("Think harder!")}>
+          <button
+            className="smallButton"
+            onClick={() => alert("Think harder!")}
+          >
             Forgot password?
           </button>
           <button className="gotoRegister" onClick={goRegister}>
