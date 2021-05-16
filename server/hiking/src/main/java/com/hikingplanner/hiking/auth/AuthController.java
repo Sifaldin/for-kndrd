@@ -30,6 +30,18 @@ public class AuthController {
     }
 
     @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticate(@RequestBody User user) {
+        try {
+            String token = authService.authenticate(user.getEmail(), user.getPassword());
+            AuthResponse authResponse = new AuthResponse(token);
+            return new ResponseEntity<>(authResponse, HttpStatus.OK);
+        } catch (AuthenticationException authenticationException) {
+            register(user);
+        }
+        return null;
+    }
+
+    /*@PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthRequest authRequest) {
         try {
             String token = authService.authenticate(authRequest.getEmail(), authRequest.getPassword());
@@ -39,5 +51,5 @@ public class AuthController {
         } catch (AuthenticationException authenticationException) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-    }
+    }*/
 }

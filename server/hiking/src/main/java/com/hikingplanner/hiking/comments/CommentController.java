@@ -20,12 +20,11 @@ public class CommentController {
         this.service = service;
     }
 
-
     /**
      * EndPoint that receives a request to get all the comments
      *
      * @return Invoke the getAll function in the commentService class.
-     *List of comments.
+     * List of comments.
      */
     @GetMapping("")
     public List<Comment> getComments() {
@@ -35,6 +34,7 @@ public class CommentController {
 
     /**
      * EndPoint that receives new comment data and send them to the comment service to create the new comment
+     *
      * @param newComment
      * @return Invoke the create function in the commentService class.
      * List of comments
@@ -47,6 +47,7 @@ public class CommentController {
 
     /**
      * EndPoint that receives the updated data and send them to the comment service to update an existed comment.
+     *
      * @param updatedComment
      * @return Invoke the update function in the postService class.
      * The updated comment.
@@ -58,6 +59,7 @@ public class CommentController {
 
     /**
      * EndPoint that receives a specific id and invoke the delete function in comment service.
+     *
      * @param id
      */
     @DeleteMapping("/{id}")

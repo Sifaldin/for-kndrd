@@ -2,10 +2,8 @@ import AuthApi from '../api/AuthApi';
 
 const tokenKey = '_token';
 
-// Disclaimer: This simple auth implementation is for development purposes only.
-
 class Auth {
-  setLoggedIn = () => {};
+  setLoggedIn = () => { };
 
   isLoggedIn() {
     return this._getToken() != null;

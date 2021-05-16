@@ -11,73 +11,68 @@ import PostForm from "./components/posts/PostForm";
 import Api from "./api/Api";
 import Nav from "./components/layout/Nav";
 import DetailedPostPage from "./pages/DetailedPostPage";
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(Auth.isLoggedIn());
   const [posts, setPosts] = useState([]);
-  const [user, setUser] = useState({});
-  const [userPosts, setUserPosts] = useState([]);
+  const [databaseUser, setDatabaseUser] = useState({});
+  const { isAuthenticated, isLoading, user, logout } = useAuth0();
 
+  const logGoogleUserIn = () => {
+    Auth.login({
+      email: user.email,
+      password: user.nickname,
+      name: user.name,
+      imageUrl: user.picture,
+    });
+  };
 
   Auth.bindLoggedInStateSetter(setLoggedIn);
+
+  // set database user when logging in with auth0
+  useEffect(() => {
+    if (isAuthenticated) {
+      logGoogleUserIn();
+    }
+  }, [isAuthenticated]);
+  //Fetch User
+  useEffect(() => {
+    if (loggedIn) {
+      const fetchUser = async () => {
+        await Api.get(`/user`).then((res) => setDatabaseUser(res.data));
+      };
+      fetchUser();
+    }
+  }, [loggedIn, isAuthenticated]);
 
   //Fetch All Posts
   useEffect(() => {
     if (loggedIn) {
       const fetchPosts = async () => {
-       await Api.get(`/posts`).then(res => setPosts(res.data))
+        await Api.get(`/posts`).then((res) => setPosts(res.data));
       };
       fetchPosts();
     }
-  }, [loggedIn]);
+  }, [loggedIn, setPosts, isAuthenticated]);
 
-  //Fetch User
-  useEffect(() => {
-    if (loggedIn) {
-      const fetchUser = async () => {
-       await Api.get(`/user`).then(res => setUser(res.data));
-      };
-      fetchUser()
-    }
-  }, [loggedIn]);
-  
-  //Fetch User's Posts
-  useEffect(() => {
-    if (loggedIn && posts.length !== 0) {
-      const fetchUserPosts = async () => {
-       await Api.get(`/posts`).then(res => {
-         setUserPosts(res?.data?.filter(
-        (p) => p.user.email === user.email))
-      }
-       )};
-      fetchUserPosts()
-    }
-  }, [loggedIn, user, posts]);
-
-  console.log(posts)
-
-  const loggedInRouter = (
+  const authroized = (
     <>
       <Router>
-        <Nav onLogout={() => Auth.logout()} user={user} setUser={setUser} />
+        <Nav user={databaseUser} setUser={setDatabaseUser} />
 
         <div className="body-container">
           <Switch>
-            {/* The route displays the application's homepage */}
             <Route path="/" exact>
-              <HomePage user={user} userPosts={userPosts} />
+              <HomePage user={databaseUser} posts={posts} />
             </Route>
 
             <Route path="/posts" exact>
-              <PostsPage
-                posts={posts}
-                loggedInUser={user}
-              />
+              <PostsPage posts={posts} />
             </Route>
 
             <Route exact path="/new">
-              <PostForm setPosts={setPosts} user={user} posts={posts} />
+              <PostForm setPosts={setPosts} user={databaseUser} posts={posts} />
             </Route>
 
             <Route
@@ -86,21 +81,25 @@ function App() {
                 <DetailedPostPage
                   match={match}
                   setPosts={setPosts}
-                  user={user}
+                  user={databaseUser}
                   posts={posts}
                 />
               )}
             />
-
           </Switch>
         </div>
       </Router>
-
     </>
   );
 
-  // The first page displayed by the app is the login page.
-  return loggedIn ? loggedInRouter : <LandingPage />;
+  return loggedIn ? (
+    authroized
+  ) : (
+    <LandingPage
+      databaseUser={databaseUser}
+      setDatabaseUser={setDatabaseUser}
+    />
+  );
 }
 
 export default App;

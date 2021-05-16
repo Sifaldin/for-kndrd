@@ -1,8 +1,6 @@
 package com.hikingplanner.hiking.post;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hikingplanner.hiking.comments.Comment;
-import com.hikingplanner.hiking.reactions.Reaction;
 import com.hikingplanner.hiking.user.User;
 
 import javax.persistence.*;
@@ -35,29 +33,19 @@ public class Post {
     private User user;
 
     @Column
-    private String location;
-
-    @Column
     private String meetingTimeAndDate;
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "reaction_id", referencedColumnName = "id")
-    private Reaction reaction;
 
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
     public Post() {
-        this.reaction = new Reaction();
     }
 
     public Post(Long id, String title, String body, String postType) {
         this.id = id;
         this.title = title;
         this.body = body;
-        this.reaction = new Reaction();
     }
 
     public Long getId() {
@@ -106,22 +94,6 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Reaction getReaction() {
-        return reaction;
-    }
-
-    public void setReaction(Reaction articleReaction) {
-        this.reaction = articleReaction;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getMeetingTimeAndDate() {

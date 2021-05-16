@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Api from "../../api/Api";
+import React, { useState } from "react";
 import { format } from "date-fns";
 
 export default function CommentForm({ user, onSubmit, post }) {

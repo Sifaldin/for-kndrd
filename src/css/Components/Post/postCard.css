@@ -80,9 +80,7 @@ hr {
 .postcard .post-bottom .react {
   padding: 0.5rem 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  align-self: end;
+  justify-content: center;
 }
 
 .postcard .post-bottom .react .medium-button {
@@ -90,14 +88,6 @@ hr {
   padding: 0.5rem 1rem;
 }
 
-.reaction button {
-  background: none;
-  border: none;
-}
-
-.reaction button:hover {
-  cursor: pointer;
-}
 
 .msg_send_btn {
   background: #b52b65 none repeat scroll 0 0;

@@ -1,5 +1,3 @@
-/* These styles apply to all three categories of posts,
-the classes are mostly defined in SinglePost.jsx and SharedSinglePost.jsx */
 
 .post-wrapper {
   display: grid;
@@ -17,6 +15,8 @@ the classes are mostly defined in SinglePost.jsx and SharedSinglePost.jsx */
   padding-bottom: 1rem;
   grid-row-gap: 1rem;
   grid-column-gap: 4rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
 }
 
 .single-post .post-pic {
