@@ -12,30 +12,23 @@ import Api from "./api/Api";
 import Nav from "./components/layout/Nav";
 import DetailedPostPage from "./pages/DetailedPostPage";
 import { useAuth0 } from "@auth0/auth0-react";
+import AuthApi from "./api/AuthApi";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(Auth.isLoggedIn());
   const [posts, setPosts] = useState([]);
   const [databaseUser, setDatabaseUser] = useState({});
-  const { isAuthenticated, isLoading, user, logout } = useAuth0();
-
-  const logGoogleUserIn = () => {
-    Auth.login({
-      email: user.email,
-      password: user.nickname,
-      name: user.name,
-      imageUrl: user.picture,
-    });
-  };
+  const { isAuthenticated, isLoading, user } = useAuth0();
 
   Auth.bindLoggedInStateSetter(setLoggedIn);
 
   // set database user when logging in with auth0
   useEffect(() => {
     if (isAuthenticated) {
-      logGoogleUserIn();
+      AuthApi.logGoogleUserIn(user);
     }
   }, [isAuthenticated]);
+
   //Fetch User
   useEffect(() => {
     if (loggedIn) {
@@ -67,7 +60,7 @@ function App() {
               <HomePage user={databaseUser} posts={posts} />
             </Route>
 
-            <Route path="/posts" exact>
+            <Route path="/feed" exact>
               <Feed posts={posts} />
             </Route>
 
@@ -91,6 +84,8 @@ function App() {
       </Router>
     </>
   );
+
+  if (isLoading) return <div>Loading....</div>;
 
   return loggedIn ? (
     authroized

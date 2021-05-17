@@ -13,8 +13,6 @@ export default function Comments({ postId, user, post }) {
     getAllComments();
   }, [setComments]);
 
-  console.log("comments", comments);
-
   const createComment = (commentData) => {
     Api.post(`/comments`, commentData).then((response) => {
       setComments([...comments, response.data]);

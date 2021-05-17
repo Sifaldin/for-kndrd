@@ -40,16 +40,11 @@ export default function RegisterForm({ onSubmit, goLogin }) {
           className="submitButton"
           type="submit"
           onClick={() => onSubmit({ name, email, password })}
-          value="Sign Up"
         >
           SIGN UP
         </button>
 
-        <button
-          type="submit"
-          onClick={() => loginWithRedirect()}
-          value="Sign Up"
-        >
+        <button type="submit" onClick={() => loginWithRedirect()}>
           Sign up with Google
         </button>
 

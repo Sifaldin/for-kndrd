@@ -23,7 +23,6 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
     fetchPost();
   }, [id]);
 
-  console.log(post);
 
   const updatePost = (updatedPost) => {
     Api.put("/posts", updatedPost).then((res) => {
@@ -37,7 +36,7 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
 
   const deletePost = () => {
     setPosts(posts.filter((post) => post.id != id));
-    Api.delete("/posts/" + post.id).then(() => history.push(`/posts`));
+    Api.delete("/posts/" + post.id).then(() => history.push(`/feed`));
   };
 
   const dateDisplay = () => {
