@@ -7,7 +7,7 @@ export default function Feed({ posts }) {
         {posts.length === 0 || posts === undefined ? (
           <h1 className="empty-feed">Your feed looks empty, start posting!</h1>
         ) : (
-          posts.map((post) => <PostCard key={post.id} post={post} />)
+          posts?.map((post) => <PostCard key={post?.id} post={post} />)
         )}
       </div>
     </div>

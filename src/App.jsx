@@ -33,7 +33,12 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       const fetchUser = async () => {
-        await Api.get(`/user`).then((res) => setDatabaseUser(res.data));
+        try {
+          const { data } = await Api.get("/user");
+          setDatabaseUser(data);
+        } catch (e) {
+          console.error(e);
+        }
       };
       fetchUser();
     }
@@ -43,11 +48,16 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       const fetchPosts = async () => {
-        await Api.get(`/posts`).then((res) => setPosts(res.data));
+        try {
+          const { data } = await Api.get(`/posts`);
+          setPosts(data);
+        } catch (e) {
+          console.error(e);
+        }
       };
       fetchPosts();
     }
-  }, [loggedIn, setPosts, isAuthenticated]);
+  }, [loggedIn, isAuthenticated]);
 
   const authroized = (
     <>

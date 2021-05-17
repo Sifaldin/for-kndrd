@@ -18,11 +18,15 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
 
   useEffect(() => {
     const fetchPost = async () => {
-      await Api.get(`/posts/${id}`).then((res) => setPost(res.data));
+      try {
+        const { data } = await Api.get(`/posts/${id}`);
+        setPost(data);
+      } catch (e) {
+        console.error(e);
+      }
     };
     fetchPost();
   }, [id]);
-
 
   const updatePost = (updatedPost) => {
     Api.put("/posts", updatedPost).then((res) => {

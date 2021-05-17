@@ -26,7 +26,7 @@ export default function ImageUploader({ setImgUrl }) {
     };
     sendImage();
     return () => abortFetch.abort();
-  }, [payload, setImgUrl]);
+  }, [payload]);
 
   const updateImage = (event) => {
     var file = event[0];

@@ -11,7 +11,7 @@ export default function Comments({ postId, user, post }) {
       Api.get("/comments").then((res) => setComments(res.data));
     };
     getAllComments();
-  }, [setComments]);
+  }, []);
 
   const createComment = (commentData) => {
     Api.post(`/comments`, commentData).then((response) => {
@@ -32,7 +32,7 @@ export default function Comments({ postId, user, post }) {
     <div className="comments-wrapper">
       <h3>Comments</h3>
 
-      {comments.length > 0 ? (
+      {comments?.length > 0 ? (
         <div className="comments">
           {comments
             .filter((comment) => comment.post?.id == postId)

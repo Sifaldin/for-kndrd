@@ -10,7 +10,6 @@ function PostForm({ posts, setPosts, user }) {
   const [imgUrl, setImgUrl] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [details, setDetails] = useState("");
-  const [uploading, setUploading] = useState(true);
 
   /* calendar related hook */
   const now = new Date().toString();
@@ -49,7 +48,7 @@ function PostForm({ posts, setPosts, user }) {
           <div className="page-title">
             <h1>Share Your Plans!</h1>
           </div>
-          <ImageUploader setUploading={setUploading} setImgUrl={setImgUrl} />
+          <ImageUploader setImgUrl={setImgUrl} />
 
           <label className="custom-field">
             <input

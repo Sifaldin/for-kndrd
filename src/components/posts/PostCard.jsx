@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import Api from "../../api/Api";
+import React from "react";
 import { Link } from "react-router-dom";
-import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
 
 export default function PostCard({ post }) {
   return (
@@ -32,7 +30,7 @@ export default function PostCard({ post }) {
           <div className="signature"></div>
           <hr />
           <div className="react">
-            <Link className="medium-button" to={`/posts/${post.id}`}>
+            <Link className="medium-button" to={`/posts/${post?.id}`}>
               View post
             </Link>
           </div>
