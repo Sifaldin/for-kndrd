@@ -22,7 +22,7 @@ export default function Comments({ postId, user, post }) {
   const updateComment = (updatedComment) => {
     Api.put("/comments", updatedComment).then((res) => {
       let mappedComments = comments?.map((comment) =>
-        comment.id !== updateComment?.id ? comment : res.data
+        comment.id !== updatedComment?.id ? comment : res.data
       );
       setComments(mappedComments);
     });
@@ -38,11 +38,15 @@ export default function Comments({ postId, user, post }) {
             .filter((comment) => comment.post?.id == postId)
             .map((comment) => (
               <CommentCard
+                comments={comments}
+                onSetComments={(data) => setComments(data)}
                 user={user}
                 comment={comment}
                 key={comment.id}
                 updateComment={updateComment}
-                setComments={setComments}
+                onDeleteComment={() =>
+                  setComments(comments.filter((c) => c.id !== comment.id))
+                }
                 comments={comments}
               />
             ))}

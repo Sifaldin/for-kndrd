@@ -7,7 +7,7 @@ import ImageEditMenu from "./ImageEditMenu";
 import { RiDashboardLine } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function DropDownMenu({ user, setUser }) {
+export default function DropDownMenu({ user, onUpdateUser }) {
   const [open, setOpen] = useState(true);
   const [activeMenu, setactiveMenu] = useState("main");
   const [showImageEdit, setShowImageEdit] = useState(false);
@@ -97,8 +97,8 @@ export default function DropDownMenu({ user, setUser }) {
         {showImageEdit ? (
           <ImageEditMenu
             user={user}
-            setUser={setUser}
-            setShowImageEdit={setShowImageEdit}
+            onUpdateUser={onUpdateUser}
+            onSetShowImageEdit={data => setShowImageEdit(data)}
           />
         ) : null}
       </div>

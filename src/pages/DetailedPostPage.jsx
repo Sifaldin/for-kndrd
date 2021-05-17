@@ -6,7 +6,13 @@ import { BsClock } from "react-icons/bs";
 import Comments from "../components/comments/Comments";
 import PostUpdateForm from "../components/posts/PostUpdateForm";
 
-export default function DetailedPostPage({ match, setPosts, user, posts }) {
+export default function DetailedPostPage({
+  match,
+  onDelete,
+  onUpdate,
+  user,
+  posts,
+}) {
   const id = match.params.id;
   const [isUpdating, setIsUpdating] = useState(false);
   const [post, setPost] = useState(posts?.find((post) => post.id == id));
@@ -33,13 +39,13 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
       let mappedPosts = posts?.map((post) =>
         post.id !== updatedPost?.id ? post : res.data
       );
-      setPosts(mappedPosts);
+      onUpdate(mappedPosts);
       setPost(res.data);
     });
   };
 
   const deletePost = () => {
-    setPosts(posts.filter((post) => post.id != id));
+    onDelete(post);
     Api.delete("/posts/" + post.id).then(() => history.push(`/feed`));
   };
 
@@ -77,7 +83,7 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
               <div>
                 <MaterialUiCalendar
                   selectedDateAndTime={selectedDateAndTime}
-                  setSelectedDateAndTime={setSelectedDateAndTime}
+                  onUpdateDate={(data) => setSelectedDateAndTime(data)}
                 />
                 <button
                   className="medium-button edit"
@@ -114,7 +120,7 @@ export default function DetailedPostPage({ match, setPosts, user, posts }) {
             <PostUpdateForm
               post={post}
               updatePost={updatePost}
-              setIsUpdating={setIsUpdating}
+              onSetisUpdating={(data) => setIsUpdating(data)}
             />
           ) : (
             <>
