@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactImageUploadComponent from "react-images-upload";
 
-export default function ImageUploader({ setImgUrl }) {
+export default function ImageUploader({ onSetImgUrl }) {
   const [payload, setPayload] = useState(null);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function ImageUploader({ setImgUrl }) {
             }
           );
           const jsonResponse = await response.json();
-          setImgUrl(jsonResponse["secure_url"]);
+          onSetImgUrl(jsonResponse["secure_url"]);
         }
       } catch (error) {
         console.log(error);

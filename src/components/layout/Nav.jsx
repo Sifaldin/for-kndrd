@@ -4,7 +4,7 @@ import logo from "../../assets/logo.jpg";
 import DropDownItem from "./dropdown-menu/DropDownItem";
 import DropDownMenu from "./dropdown-menu/DropDownMenu";
 
-export default function Nav({ user, setUser }) {
+export default function Nav({ user, onUpdateUser }) {
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -29,9 +29,7 @@ export default function Nav({ user, setUser }) {
             </Link>
           </li>
           <div className="desktopSize">
-            <li
-              className="nav-item"
-            >
+            <li className="nav-item">
               <div className="nav-links">
                 <Link
                   to="/feed"
@@ -70,7 +68,7 @@ export default function Nav({ user, setUser }) {
               />
             }
           >
-            <DropDownMenu user={user} setUser={setUser} />
+            <DropDownMenu user={user} onUpdateUser={onUpdateUser} />
           </DropDownItem>
           <div className="user-name">{user.name}</div>
         </div>

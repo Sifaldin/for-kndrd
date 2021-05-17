@@ -62,7 +62,10 @@ function App() {
   const authroized = (
     <>
       <Router>
-        <Nav user={databaseUser} setUser={setDatabaseUser} />
+        <Nav
+          user={databaseUser}
+          onUpdateUser={(data) => setDatabaseUser(data)}
+        />
 
         <div className="body-container">
           <Switch>
@@ -75,7 +78,10 @@ function App() {
             </Route>
 
             <Route exact path="/new">
-              <PostForm setPosts={setPosts} user={databaseUser} posts={posts} />
+              <PostForm
+                user={databaseUser}
+                onPost={(data) => setPosts([...posts, data])}
+              />
             </Route>
 
             <Route
@@ -83,9 +89,12 @@ function App() {
               render={({ match }) => (
                 <DetailedPostPage
                   match={match}
-                  setPosts={setPosts}
                   user={databaseUser}
                   posts={posts}
+                  onUpdate={(data) => setPosts([...posts, data])}
+                  onDelete={(data) =>
+                    setPosts(posts.filter((post) => post.id != data.id))
+                  }
                 />
               )}
             />
@@ -97,14 +106,7 @@ function App() {
 
   if (isLoading) return <div>Loading....</div>;
 
-  return loggedIn ? (
-    authroized
-  ) : (
-    <LandingPage
-      databaseUser={databaseUser}
-      setDatabaseUser={setDatabaseUser}
-    />
-  );
+  return loggedIn ? authroized : <LandingPage />;
 }
 
 export default App;

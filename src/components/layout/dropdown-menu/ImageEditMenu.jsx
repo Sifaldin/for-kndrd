@@ -3,12 +3,16 @@ import Api from "../../../api/Api";
 import ProfileImageUploader from "./ProfileImageUploader";
 import { IoMdCloseCircle } from "react-icons/io";
 
-export default function ImageEditMenu({ user, setUser, setShowImageEdit }) {
+export default function ImageEditMenu({
+  user,
+  onUpdateUser,
+  onSetShowImageEdit,
+}) {
   const [imgUrl, setImgUrl] = useState(user.imageUrl);
 
   const updateUser = () => {
     const updatedUser = { ...user, imageUrl: imgUrl };
-    Api.put("/user", updatedUser).then((res) => setUser(res.data));
+    Api.put("/user", updatedUser).then((res) => onUpdateUser(res.data));
   };
 
   return (
@@ -17,20 +21,20 @@ export default function ImageEditMenu({ user, setUser, setShowImageEdit }) {
         <div className="modal-icon">
           <IoMdCloseCircle
             color="lightblue"
-            onClick={() => setShowImageEdit(false)}
+            onClick={() => onSetShowImageEdit(false)}
           />
         </div>
 
         <div className="image-edit-body">
           <img className={"profileImg"} src={imgUrl} />
           <div className={"uploader"}>
-            <ProfileImageUploader setImgUrl={setImgUrl} />
+            <ProfileImageUploader onSetImgUrl={(data) => setImgUrl(data)} />
 
             <button
               className="share-btn"
               onClick={() => {
                 updateUser();
-                setShowImageEdit(false);
+                onSetShowImageEdit(false);
               }}
             >
               Upload

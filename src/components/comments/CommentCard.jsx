@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import CommentUpdateForm from "./CommentUpdateForm";
 
-function CommentCard({ comment, setComments, comments, updateComment, user }) {
+function CommentCard({
+  comment,
+  onDeleteComment,
+  onSetComments,
+  updateComment,
+  user,
+  comments,
+}) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updatedComment, setUpdatedComment] = useState(comment);
 
   const deleteComment = () => {
-    setComments(comments.filter((c) => c.id !== comment.id));
+    onDeleteComment();
     Api.delete(`/comments/${comment.id}`);
   };
 
@@ -26,10 +33,14 @@ function CommentCard({ comment, setComments, comments, updateComment, user }) {
 
       {isUpdating ? (
         <CommentUpdateForm
-          oldComment={comment}
+          comments={comments}
+          onSetComments={onSetComments}
+          comment={comment}
           updateComment={updateComment}
-          setIsUpdating={setIsUpdating}
-          setUpdatedComment={setUpdatedComment}
+          onSetIsUpdating={(data) => setIsUpdating(data)}
+          onSetUpdatedComment={(data) =>
+            setUpdatedComment({ ...comment, data })
+          }
         />
       ) : (
         <p>{updatedComment.body}</p>

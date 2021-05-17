@@ -5,7 +5,7 @@ import Api from "../../api/Api";
 import ImageUploader from "./ImageUploader";
 import MaterialUiCalendar from "../Calendar/MaterialUiCalendar";
 
-function PostForm({ posts, setPosts, user }) {
+function PostForm({ onPost, user }) {
   const history = useHistory();
   const [imgUrl, setImgUrl] = useState("");
   const [postTitle, setPostTitle] = useState("");
@@ -36,7 +36,7 @@ function PostForm({ posts, setPosts, user }) {
     };
 
     Api.post("/posts", newPost).then((res) => {
-      setPosts([...posts, res.data]);
+      onPost(res.data);
       history.push(`/feed`);
     });
   };
@@ -48,7 +48,7 @@ function PostForm({ posts, setPosts, user }) {
           <div className="page-title">
             <h1>Share Your Plans!</h1>
           </div>
-          <ImageUploader setImgUrl={setImgUrl} />
+          <ImageUploader onSetImageUrl={(data) => setImgUrl(data)} />
 
           <label className="custom-field">
             <input
@@ -73,7 +73,7 @@ function PostForm({ posts, setPosts, user }) {
 
           <MaterialUiCalendar
             selectedDateAndTime={selectedDateAndTime}
-            setSelectedDateAndTime={setSelectedDateAndTime}
+            onUpdateDate={(data) => setSelectedDateAndTime(data)}
           />
 
           <div>

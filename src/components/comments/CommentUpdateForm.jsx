@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
 function CommentUpdateForm({
-  oldComment,
+  comment,
   updateComment,
-  setIsUpdating,
-  setUpdatedComment,
+  onSetIsUpdating,
+  onSetUpdatedComment,
+  onSetComments,
+  comments,
 }) {
-  const [body, setBody] = useState(oldComment.body);
+  const [body, setBody] = useState(comment.body);
 
   return (
     <div className="comment-area">
@@ -18,9 +20,10 @@ function CommentUpdateForm({
       <button
         className="medium-button"
         onClick={() => {
-          updateComment({ ...oldComment, body });
-          setIsUpdating(false);
-          setUpdatedComment({ ...oldComment, body });
+          onSetComments({ ...comments, comment });
+          onSetUpdatedComment(body);
+          updateComment({ ...comment, body });
+          onSetIsUpdating(false);
         }}
       >
         Save

@@ -7,11 +7,11 @@ import {
 
 export default function MaterialUiCalendar({
   selectedDateAndTime,
-  setSelectedDateAndTime,
+  onUpdateDate,
 }) {
   const handleDateUpdate = (date) => {
     const dateFormat = date.toString();
-    setSelectedDateAndTime(dateFormat);
+    onUpdateDate(dateFormat);
   };
 
   return (
