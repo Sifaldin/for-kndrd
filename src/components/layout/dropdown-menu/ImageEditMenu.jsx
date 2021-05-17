@@ -6,7 +6,6 @@ import { IoMdCloseCircle } from "react-icons/io";
 export default function ImageEditMenu({ user, setUser, setShowImageEdit }) {
   const [imgUrl, setImgUrl] = useState(user.imageUrl);
 
-  //Callback function that will send a user update call to the server
   const updateUser = () => {
     const updatedUser = { ...user, imageUrl: imgUrl };
     Api.put("/user", updatedUser).then((res) => setUser(res.data));

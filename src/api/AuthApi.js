@@ -1,3 +1,4 @@
+import Auth from '../services/Auth';
 import Api from './Api';
 
 class AuthApi {
@@ -12,6 +13,15 @@ class AuthApi {
   getEmail() {
     return Api.get('/user');
   }
+
+  logGoogleUserIn = (user) => {
+    Auth.login({
+      email: user.email,
+      password: user.nickname,
+      name: user.name,
+      imageUrl: user.picture,
+    });
+  };
 }
 
 export default new AuthApi();

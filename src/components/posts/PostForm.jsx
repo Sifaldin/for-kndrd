@@ -38,7 +38,7 @@ function PostForm({ posts, setPosts, user }) {
 
     Api.post("/posts", newPost).then((res) => {
       setPosts([...posts, res.data]);
-      history.push(`/posts`);
+      history.push(`/feed`);
     });
   };
 

@@ -5,10 +5,6 @@ function CommentCard({ comment, setComments, comments, updateComment, user }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updatedComment, setUpdatedComment] = useState(comment);
 
-  const handleUpdateClick = () => {
-    setIsUpdating(true);
-  };
-
   const deleteComment = () => {
     setComments(comments.filter((c) => c.id !== comment.id));
     Api.delete(`/comments/${comment.id}`);
@@ -41,7 +37,7 @@ function CommentCard({ comment, setComments, comments, updateComment, user }) {
 
       {comment.user.name === user.name ? (
         <div className="button-group">
-          <button className="medium-button" onClick={handleUpdateClick}>
+          <button className="medium-button" onClick={() => setIsUpdating(true)}>
             Update
           </button>
 

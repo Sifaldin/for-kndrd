@@ -4,36 +4,21 @@ import logo from "../../assets/logo.jpg";
 import DropDownItem from "./dropdown-menu/DropDownItem";
 import DropDownMenu from "./dropdown-menu/DropDownMenu";
 
-
-
-
-function Nav({ user, setUser }) {
-console.log(user)
+export default function Nav({ user, setUser }) {
   const [click, setClick] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-  
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
-
-  const onMouseEnter = () => {
-    setDropdown(true);
-  };
-
-  const onMouseLeave = () => {
-    setDropdown(false);
-  };
 
   return (
     <>
       <nav className="navbar">
         <div>
-        <Link to="/" onClick={closeMobileMenu}>
-          <img className="navbar-logo" src={logo} alt="logo" />
-        </Link>
-         </div>
-       
+          <Link to="/" onClick={closeMobileMenu}>
+            <img className="navbar-logo" src={logo} alt="logo" />
+          </Link>
+        </div>
+
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>
@@ -44,36 +29,32 @@ console.log(user)
             </Link>
           </li>
           <div className="desktopSize">
-          <li
-            className="nav-item"
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <div className="nav-links">
-
-            <Link to='/posts' className="nav-links" onClick={closeMobileMenu}>
-                Posts
-            </Link>
-             
-            </div>
-          </li>
+            <li
+              className="nav-item"
+            >
+              <div className="nav-links">
+                <Link
+                  to="/feed"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Feed
+                </Link>
+              </div>
+            </li>
           </div>
           <div className="phoneSize">
-           
             <li className=" nav-item">
-              <Link to='/posts' className="nav-links" onClick={closeMobileMenu}>
-                Posts
-            </Link>
+              <Link to="/feed" className="nav-links" onClick={closeMobileMenu}>
+                Feed
+              </Link>
             </li>
-         
           </div>
           <li className="nav-item">
-            <Link to="/new" className="nav-links">
+            <Link to="/new" className="nav-links" onClick={closeMobileMenu}>
               New Post
             </Link>
           </li>
-          
-          
         </ul>
         <div className="profile-icon">
           <DropDownItem
@@ -97,5 +78,3 @@ console.log(user)
     </>
   );
 }
-
-export default Nav;
