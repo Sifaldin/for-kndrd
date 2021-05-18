@@ -14,7 +14,7 @@ import DetailedPostPage from "./pages/DetailedPostPage";
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthApi from "./api/AuthApi";
 
-function App() {
+export default function App() {
   const [loggedIn, setLoggedIn] = useState(Auth.isLoggedIn());
   const [posts, setPosts] = useState([]);
   const [databaseUser, setDatabaseUser] = useState({});
@@ -110,5 +110,3 @@ function App() {
 
   return loggedIn ? authroized : <LandingPage />;
 }
-
-export default App;
