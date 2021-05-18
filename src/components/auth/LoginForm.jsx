@@ -5,7 +5,7 @@ export default function LoginForm({ onSubmit, goRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { loginWithRedirect, user } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <div className="form-wrapper">
