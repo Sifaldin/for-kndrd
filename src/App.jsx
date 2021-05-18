@@ -91,7 +91,11 @@ function App() {
                   match={match}
                   user={databaseUser}
                   posts={posts}
-                  onUpdate={(data) => setPosts([...posts, data])}
+                  onUpdate={(data) =>
+                    setPosts(
+                      posts?.map((post) => (post.id !== data.id ? post : data))
+                    )
+                  }
                   onDelete={(data) =>
                     setPosts(posts.filter((post) => post.id != data.id))
                   }
@@ -103,8 +107,6 @@ function App() {
       </Router>
     </>
   );
-
-  if (isLoading) return <div>Loading....</div>;
 
   return loggedIn ? authroized : <LandingPage />;
 }

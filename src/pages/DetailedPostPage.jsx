@@ -35,11 +35,9 @@ export default function DetailedPostPage({
   }, [id]);
 
   const updatePost = (updatedPost) => {
+    
     Api.put("/posts", updatedPost).then((res) => {
-      let mappedPosts = posts?.map((post) =>
-        post.id !== updatedPost?.id ? post : res.data
-      );
-      onUpdate(mappedPosts);
+      onUpdate(res.data);
       setPost(res.data);
     });
   };
@@ -51,20 +49,20 @@ export default function DetailedPostPage({
 
   const dateDisplay = () => {
     if (post?.meetingTimeAndDate !== null) {
-      return post?.meetingTimeAndDate?.slice(0, 10);
+      return post?.meetingTimeAndDate.slice(0, 10);
     }
   };
 
   const timeDisplay = () => {
     if (post?.meetingTimeAndDate !== null) {
-      return post?.meetingTimeAndDate?.slice(16, 21);
+      return post?.meetingTimeAndDate.slice(16, 21);
     }
   };
 
   return (
     <div className="single-post">
       <div className="post-pic">
-        <img src={post?.imageUrl} alt="Single post img" />
+        <img src={post.imageUrl} alt="Single post img" />
       </div>
 
       <div className="time-related">
@@ -79,7 +77,7 @@ export default function DetailedPostPage({
               </div>
             </div>
 
-            {post?.user?.id === user?.id && post?.meetingTimeAndDate && (
+            {post?.user.id === user?.id && post?.meetingTimeAndDate && (
               <div>
                 <MaterialUiCalendar
                   selectedDateAndTime={selectedDateAndTime}
@@ -107,11 +105,11 @@ export default function DetailedPostPage({
           <div className="signature">
             <img
               className="post-user"
-              src={post?.user?.imageUrl}
+              src={post?.user.imageUrl}
               alt="Single post img"
             />
             <div>
-              <span className="user-name">{post?.user?.name}</span>
+              <span className="user-name">{post?.user.name}</span>
               <span className="date">{post?.date}</span>
             </div>
           </div>
@@ -124,12 +122,12 @@ export default function DetailedPostPage({
             />
           ) : (
             <>
-              <h3 className="post-title">{post?.title}</h3>
-              <p className="post-body">{post?.body}</p>
+              <h3 className="post-title">{post.title}</h3>
+              <p className="post-body">{post.body}</p>
             </>
           )}
 
-          {post?.user?.email === user?.email ? (
+          {post?.user.email === user?.email && (
             <div className="button-group">
               <button
                 className="medium-button"
@@ -142,10 +140,6 @@ export default function DetailedPostPage({
                 Delete
               </button>
             </div>
-          ) : (
-            <button className="mes-button" type="submit">
-              <i className="fa fa-paper-plane" aria-hidden="true"></i>
-            </button>
           )}
         </div>
         <Comments postId={id} user={user} post={post} />
