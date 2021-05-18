@@ -35,11 +35,9 @@ export default function DetailedPostPage({
   }, [id]);
 
   const updatePost = (updatedPost) => {
+    
     Api.put("/posts", updatedPost).then((res) => {
-      let mappedPosts = posts?.map((post) =>
-        post.id !== updatedPost.id ? post : res.data
-      );
-      onUpdate(mappedPosts);
+      onUpdate(res.data);
       setPost(res.data);
     });
   };
@@ -129,7 +127,7 @@ export default function DetailedPostPage({
             </>
           )}
 
-          {post?.user.email === user?.email ? (
+          {post?.user.email === user?.email && (
             <div className="button-group">
               <button
                 className="medium-button"
@@ -142,10 +140,6 @@ export default function DetailedPostPage({
                 Delete
               </button>
             </div>
-          ) : (
-            <button className="mes-button" type="submit">
-              <i className="fa fa-paper-plane" aria-hidden="true"></i>
-            </button>
           )}
         </div>
         <Comments postId={id} user={user} post={post} />
