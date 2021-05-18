@@ -18,7 +18,7 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(Auth.isLoggedIn());
   const [posts, setPosts] = useState([]);
   const [databaseUser, setDatabaseUser] = useState({});
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   Auth.bindLoggedInStateSetter(setLoggedIn);
 
